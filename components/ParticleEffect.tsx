@@ -19,7 +19,7 @@ interface Particle {
 
 const ParticleEffect = ({ 
   type = 'snow', 
-  count = 40,
+  count = 20,
   cursorEffect = true 
 }: ParticleEffectProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -32,22 +32,11 @@ const ParticleEffect = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-    };
-    if (cursorEffect) {
-      window.addEventListener('mousemove', handleMouseMove);
-    }
-
     const particles: Particle[] = [];
-    for (let i = 0; i < count; i++) {
+
+    const initParticles = () => {
+      particles.length = 0;
+      for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
@@ -56,6 +45,23 @@ const ParticleEffect = ({
           speedX: type === 'snow' ? (Math.random() - 0.5) * 0.5 : 0,
           opacity: 0.3 + Math.random() * 0.7,
         });
+      }
+    };
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    };
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+    };
+    if (cursorEffect) {
+      window.addEventListener('mousemove', handleMouseMove);
     }
 
     let animationId: number;
@@ -98,8 +104,8 @@ const ParticleEffect = ({
         if (type === 'snow') {
             ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-            ctx.shadowBlur = 5;
-            ctx.shadowColor = "rgba(255, 255, 255, 0.5)";
+            ctx.shadowBlur = 80;
+            ctx.shadowColor = "rgba(255, 255, 255, 0.8)";
         } else {
             
             ctx.rect(p.x, p.y, p.size, p.size * 4);

@@ -34,7 +34,7 @@ export default function RootLayout({
         <Navbar />
         <MusicPlayer />
         <Footer />
-        <ParticleEffect type="snow" count={60} cursorEffect={true} />
+        <ParticleEffect type="snow" count={30} cursorEffect={true} />
         {children}
       </body>
     </html>
