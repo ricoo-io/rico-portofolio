@@ -13,7 +13,7 @@ const Footer = () => {
     },
     {
       name: "LinkedIn",
-      href: "https://https://www.linkedin.com/in/deric-navino-79b505306/?trk=opento_sprofile_goalscard.com",
+      href: "https://www.linkedin.com/in/deric-navino-79b505306?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3By5fVo7csTAKH0%2F3z%2BduX7g%3D%3D",
       icon: FaLinkedin,
     },
     {
