@@ -1,9 +1,15 @@
-import React from 'react';
+"use client";
 
-export default function About() {
-  return (
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FaGithub, FaInstagram, FaLinkedin, FaEnvelope, FaPaperPlane, FaMapMarkerAlt } from "react-icons/fa";
+import Link from "next/link";
+import ContactMe from "@/components/ContactMe";
+
+export default function Contact() {
+    return (
     <div className="flex min-h-screen items-center justify-center">
-      <h1 className="text-4xl font-bold">About Me</h1>
+      <ContactMe/>
     </div>
   );
 }

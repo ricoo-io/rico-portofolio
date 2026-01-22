@@ -7,6 +7,7 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [volume, setVolume] = useState(0.2); 
+  const [isMobile, setIsMobile] = useState(false); 
   
   const songSrc = "/White lies in winter.mp3";
   const songTitle = songSrc.replace(/^\//, "").replace(/.mp3$/, "");
@@ -25,7 +26,7 @@ const MusicPlayer = () => {
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
-        //autoplay
+      
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
@@ -45,6 +46,17 @@ const MusicPlayer = () => {
     }
   }, [volume]);
 
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -55,8 +67,8 @@ const MusicPlayer = () => {
       <motion.div
         initial={false}
         animate={{ 
-          width: isPlaying ? "auto" : 48,
-          paddingRight: isPlaying ? 16 : 0,
+          width: (isPlaying && !isMobile) ? "auto" : 48,
+          paddingRight: (isPlaying && !isMobile) ? 16 : 0,
         }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
         className="flex items-center overflow-hidden h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-lg"
@@ -78,7 +90,7 @@ const MusicPlayer = () => {
         </button>
 
         <AnimatePresence>
-          {isPlaying && (
+          {isPlaying && !isMobile && (
             <motion.div
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "auto" }}

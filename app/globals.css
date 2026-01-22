@@ -26,7 +26,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  overflow-y: hidden;
+  
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

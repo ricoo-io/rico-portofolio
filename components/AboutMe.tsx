@@ -2,10 +2,11 @@
 
 import { motion } from "framer-motion"
 import Link from "next/link";
+import { FaMapMarkerAlt, FaHistory, FaLaptopCode, FaUserCheck } from "react-icons/fa";
 
 const AboutMe = () => {
     return (
-        <section className="font-nunito relative z-10 w-full max-w-5xl mx-auto px-4">
+        <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4 pt-24 pb-24">
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6 ">
                 
                 <motion.div 
@@ -41,20 +42,25 @@ const AboutMe = () => {
 
                 <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
                     {[
-                        { label: "Location", value: "Indonesia" },
-                        { label: "Experience", value: "2+ Years" },
-                        { label: "Focus", value: "Full Stack" },
-                        { label: "Status", value: "Available", statusColor: "text-green-400", indicator: true }
+                        { label: "Location", value: "Indonesia", icon: FaMapMarkerAlt },
+                        { label: "Experience", value: "2+ Years", icon: FaHistory },
+                        { label: "Focus", value: "Full Stack", icon: FaLaptopCode },
+                        { label: "Status", value: "Available", statusColor: "text-green-400", indicator: true, icon: FaUserCheck }
                     ].map((item, index) => (
                         <motion.div
                             key={item.label}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3 + (index * 0.1) }}
-                            whileHover={{ y: -2, backgroundColor: "rgba(17, 24, 39, 0.8)" }}
-                            className="bg-gray-900/50 backdrop-blur-lg border border-white/20 rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-colors"
+                            whileHover={{ backgroundColor: "rgba(17, 24, 39, 0.8)" }}
+                            className="bg-gray-900/50 backdrop-blur-lg border border-white/20 rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-colors group"
                         >
-                            <span className="text-xs uppercase tracking-widest text-white mb-1">{item.label}</span>
+                            <div className="flex gap-2" >
+                                <span className="text-xs uppercase tracking-widest text-white mb-1">{item.label}</span>
+                                <div className="mb-3 text-zinc-400 group-hover:text-blue-300 transition-colors">
+                                    <item.icon size={16} />
+                                </div>
+                            </div>
+
                             <div className={`text-lg font-semibold text-white flex items-center gap-2 ${item.statusColor || ''}`}>
                                 {item.indicator && (
                                     <span className="relative flex h-2 w-2">
@@ -75,7 +81,7 @@ const AboutMe = () => {
                     className="md:col-span-6"
                 >
                     <a href="/Deric Navino - CV.pdf" download className="block group">
-                        <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center justify-between transition-all duration-300 group-hover:border-white/20">
+                        <div className="bg-gradient-to-r from-white/20 to-blue-600/20 hover:from-blue-600/30 hover:to-white/30 backdrop-blur-md border border-white/10 rounded-2xl p-6 flex items-center justify-between transition-all duration-300 group-hover:border-white/20">
                             <div>
                                 <h3 className="text-xl font-bold text-white mb-1">Interested in working together?</h3>
                                 <p className="text-zinc-400 text-sm">Download my resume to see my full professional history.</p>
