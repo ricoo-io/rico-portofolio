@@ -19,7 +19,7 @@ interface Particle {
 
 const ParticleEffect = ({ 
   type = 'snow', 
-  count = 60,
+  count = 40,
   cursorEffect = true 
 }: ParticleEffectProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);

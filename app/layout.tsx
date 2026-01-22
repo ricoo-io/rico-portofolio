@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "../components/Navbar";
 import MusicPlayer from "../components/MusicPlayer";
 import ParticleEffect from "../components/ParticleEffect";
+import Footer from "../components/Footer";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -32,6 +33,7 @@ export default function RootLayout({
       >
         <Navbar />
         <MusicPlayer />
+        <Footer />
         <ParticleEffect type="snow" count={60} cursorEffect={true} />
         {children}
       </body>
