@@ -13,31 +13,50 @@ const AboutMe = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="md:col-span-4 bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col justify-center shadow-xl border border-white/20"
+                    className="md:col-span-4 bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-xl border border-white/20"
                 >
-                    <motion.h1 
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-4xl md:text-5xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight"
-                    >
-                        Who I Am
-                    </motion.h1>
-                    
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                        className="text-lg text-zinc-300 leading-relaxed space-y-4"
-                    >
-                        <p>
-                            Hello there, I am <span className="text-white font-bold border-b border-blue-400/30 pb-0.5">Deric Navino</span>, an <span className="text-white font-semibold">undergraduate CS Student</span> at <span className="text-white font-semibold">State University Of Jakarta</span>.
-                            A junior developer who enjoys creating convenient, useful and beautiful digital experiences.
-                        </p>
-                        <p>
-                            Right now, I'm focused on <span className="text-white font-semibold">Full-Stack Web</span> and <span className="text-white font-semibold flex-nowrap">Mobile App Development</span>. But I'm also deeply interested in <span className="text-white font-semibold">Data Analysis</span> and <span className="text-white font-semibold">Machine Learning</span>.
-                        </p>
-                    </motion.div>
+                    <div className="flex flex-col md:flex-row gap-6">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex-shrink-0"
+                        >
+                            <div className="w-32 h-32 md:w-48 md:h-full rounded-2xl overflow-hidden border-2 border-white/20 group hover:border-white/40 transition-all">
+                                <img 
+                                    src="/profile.png" 
+                                    alt="Profile Picture"
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                            </div>
+                        </motion.div>
+
+                        <div className="flex flex-col justify-center">
+                            <motion.h1 
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.3 }}
+                                className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight"
+                            >
+                                Who I Am
+                            </motion.h1>
+                            
+                            <motion.div 
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.5 }}
+                                className="text-base md:text-lg text-zinc-300 leading-relaxed space-y-3 text-justify"
+                            >
+                                <p>
+                                    Hello there, I am <span className="text-white font-bold border-b border-blue-400/30 pb-0.5">Deric Navino</span>, an <span className="text-white font-semibold">undergraduate CS Student</span> at <span className="text-white font-semibold">State University Of Jakarta</span>.
+                                    A junior developer who enjoys creating convenient, useful and beautiful digital experiences.
+                                </p>
+                                <p>
+                                    Right now, I'm focused on <span className="text-white font-semibold">Full-Stack Web</span> and <span className="text-white font-semibold flex-nowrap">Mobile App Development</span>. But I'm also deeply interested in <span className="text-white font-semibold">Data Analysis</span> and <span className="text-white font-semibold">Machine Learning</span>.
+                                </p>
+                            </motion.div>
+                        </div>
+                    </div>
                 </motion.div>
 
                 <div className="md:col-span-2 grid grid-cols-2 md:grid-cols-1 gap-4">
@@ -51,6 +70,7 @@ const AboutMe = () => {
                             key={item.label}
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * (index + 1) }}
                             whileHover={{ backgroundColor: "rgba(17, 24, 39, 0.8)" }}
                             className="bg-gray-900/50 backdrop-blur-lg border border-white/20 rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-colors group"
                         >

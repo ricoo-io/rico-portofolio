@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   description: "Web Portofolio by Deric Navino",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
