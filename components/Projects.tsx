@@ -67,7 +67,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
         <motion.div
             layout
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             exit={{ opacity: 0, scale: 0.9 }}
             className="group bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-colors shadow-lg"
         >
@@ -79,9 +80,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80" />
-                
+
                 <div className="absolute top-4 right-4">
-                     <span className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-white/10 backdrop-blur-md border border-white/10 rounded-full">
+                    <span className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-white/10 backdrop-blur-md border border-white/10 rounded-full">
                         {project.category}
                     </span>
                 </div>
@@ -90,7 +91,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             {/* Content Section */}
             <div className="p-6">
                 <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
-                
+
                 <p className="text-zinc-400 mb-4 line-clamp-2">
                     {project.description}
                 </p>
@@ -98,8 +99,8 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.map((tech) => (
-                        <span 
-                            key={tech} 
+                        <span
+                            key={tech}
                             className="text-xs text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20"
                         >
                             {tech}
@@ -133,7 +134,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             <FaExternalLinkAlt size={18} />
                         </a>
                     </div>
-                    
+
                     <button
                         onClick={() => setIsExpanded(!isExpanded)}
                         className="flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
@@ -149,10 +150,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
 const Projects = () => {
     return (
-        <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4 pt-24 pb-24">
+        <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
                 className="text-center mb-16"
             >

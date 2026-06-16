@@ -1,24 +1,86 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
+const navLinks = [
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "Contact", href: "#contact" },
+];
+
 const Navbar = () => {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("#home");
   const [isOpen, setIsOpen] = useState(false);
 
-  const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Projects", href: "/projects" },
-    { name: "Skills", href: "/skills" },
-    { name: "Contact", href: "/contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navLinks.map(link => link.href.substring(1));
+      let current = activeSection;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150 && rect.bottom >= 150) {
+            current = `#${section}`;
+          }
+        }
+      }
+      
+      if (current !== activeSection) {
+        setActiveSection(current);
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [activeSection]);
 
+  const smoothScrollTo = (targetY: number, duration: number = 800) => {
+    const startY = window.scrollY;
+    const distance = targetY - startY;
+    let startTime: number | null = null;
+
+    const easeInOutCubic = (t: number): number => {
+      return t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    };
+
+    const step = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+
+      window.scrollTo(0, startY + distance * easedProgress);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
+  };
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.substring(1);
+    const element = document.getElementById(targetId);
+    if (element) {
+      const yOffset = -80;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      smoothScrollTo(y);
+    }
+    setIsOpen(false);
+  };
 
   return (
     <motion.nav 
@@ -36,12 +98,13 @@ const Navbar = () => {
         <div className="hidden md:flex bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
           <ul className="flex space-x-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = activeSection === link.href;
               
               return (
                 <li key={link.name} className="relative">
-                  <Link
+                  <a
                     href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
                     className={`relative z-10 block px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       isActive ? "text-black" : "text-zinc-200 hover:text-white"
                     }`}
@@ -55,7 +118,7 @@ const Navbar = () => {
                       />
                     )}
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               );
             })}
@@ -82,7 +145,7 @@ const Navbar = () => {
           >
             <ul className="flex flex-col py-2">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href;
+                const isActive = activeSection === link.href;
                 return (
                   <motion.li 
                     key={link.name}
@@ -90,17 +153,17 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.1 }}
                   >
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-6 py-3 text-sm transition-colors ${
-                        isActive 
-                          ? "bg-white/10 text-white font-bold" 
-                          : "text-zinc-400 hover:text-white hover:bg-white/5"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`block px-6 py-3 text-sm transition-colors ${
+                      isActive 
+                        ? "bg-white/10 text-white font-bold" 
+                        : "text-zinc-400 hover:text-white hover:bg-white/5"
+                    }`}
+                  >
+                    {link.name}
+                  </a>
                   </motion.li>
                 );
               })}

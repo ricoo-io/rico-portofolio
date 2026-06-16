@@ -6,25 +6,27 @@ import { FaMapMarkerAlt, FaHistory, FaLaptopCode, FaUserCheck } from "react-icon
 
 const AboutMe = () => {
     return (
-        <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4 pt-24 pb-24">
+        <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-6 gap-6 ">
-                
-                <motion.div 
+
+                <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="md:col-span-4 bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-xl border border-white/20"
                 >
                     <div className="flex flex-col md:flex-row gap-6">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.2 }}
                             className="flex-shrink-0"
                         >
                             <div className="w-32 h-32 md:w-48 md:h-full rounded-2xl overflow-hidden border-2 border-white/20 group hover:border-white/40 transition-all">
-                                <img 
-                                    src="/profile.png" 
+                                <img
+                                    src="/profile.png"
                                     alt="Profile Picture"
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
@@ -32,18 +34,20 @@ const AboutMe = () => {
                         </motion.div>
 
                         <div className="flex flex-col justify-center">
-                            <motion.h1 
+                            <motion.h1
                                 initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: 0.3 }}
                                 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 tracking-tight"
                             >
                                 Who I Am
                             </motion.h1>
-                            
-                            <motion.div 
+
+                            <motion.div
                                 initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: 0.5 }}
                                 className="text-base md:text-lg text-zinc-300 leading-relaxed space-y-3 text-justify"
                             >
@@ -69,7 +73,8 @@ const AboutMe = () => {
                         <motion.div
                             key={item.label}
                             initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
                             transition={{ delay: 0.1 * (index + 1) }}
                             whileHover={{ backgroundColor: "rgba(17, 24, 39, 0.8)" }}
                             className="bg-gray-900/50 backdrop-blur-lg border border-white/20 rounded-2xl p-5 flex flex-col items-center justify-center text-center transition-colors group"
@@ -84,8 +89,8 @@ const AboutMe = () => {
                             <div className={`text-lg font-semibold text-white flex items-center gap-2 ${item.statusColor || ''}`}>
                                 {item.indicator && (
                                     <span className="relative flex h-2 w-2">
-                                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                                     </span>
                                 )}
                                 {item.value}
@@ -94,9 +99,10 @@ const AboutMe = () => {
                     ))}
                 </div>
 
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: 0.8 }}
                     className="md:col-span-6"
                 >
@@ -106,10 +112,10 @@ const AboutMe = () => {
                                 <h3 className="text-xl font-bold text-white mb-1">Interested in working together?</h3>
                                 <p className="text-zinc-400 text-sm">Download my resume to see my full professional history.</p>
                             </div>
-                            
+
                             <div className="hidden sm:flex h-12 w-12 bg-white text-black rounded-full items-center justify-center group-hover:scale-110 transition-transform duration-300">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M12 9.75v8.25m0 0l3-3m-3 3l-3-3" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M12 9.75v8.25m0 0l3-3m-3 3l-3-3" />
                                 </svg>
                             </div>
                         </div>

@@ -1,7 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+
+const smoothScrollTo = (targetId: string, duration: number = 800) => {
+  const element = document.getElementById(targetId);
+  if (!element) return;
+
+  const yOffset = -80;
+  const targetY = element.getBoundingClientRect().top + window.scrollY + yOffset;
+  const startY = window.scrollY;
+  const distance = targetY - startY;
+  let startTime: number | null = null;
+
+  const easeInOutCubic = (t: number): number => {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  const step = (currentTime: number) => {
+    if (startTime === null) startTime = currentTime;
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const easedProgress = easeInOutCubic(progress);
+
+    window.scrollTo(0, startY + distance * easedProgress);
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    }
+  };
+
+  requestAnimationFrame(step);
+};
 
 const Intro = () => {
   return (
@@ -46,7 +77,10 @@ const Intro = () => {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="flex flex-col sm:flex-row items-center justify-center gap-6"
       >
-        <Link href="/projects">
+        <a href="#projects" onClick={(e) => {
+          e.preventDefault();
+          smoothScrollTo('projects');
+        }}>
           <motion.button
             
             whileTap={{ scale: 0.98 }}
@@ -54,8 +88,11 @@ const Intro = () => {
           >
             View Projects
           </motion.button>
-        </Link>
-        <Link href="/contact">
+        </a>
+        <a href="#contact" onClick={(e) => {
+          e.preventDefault();
+          smoothScrollTo('contact');
+        }}>
           <motion.button
             
             whileTap={{ scale: 0.98 }}
@@ -63,7 +100,7 @@ const Intro = () => {
           >
             Contact Me
           </motion.button>
-        </Link>
+        </a>
       </motion.div>
     </div>
   );

@@ -77,7 +77,8 @@ const Skills = () => {
         <section className="font-nunito relative z-10 w-full max-w-6xl mx-auto px-4 py-8">
             <motion.h1 
                 initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 className="text-4xl md:text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-100 to-blue-200"
             >
                 My Skills & Tech Stack
@@ -86,7 +87,8 @@ const Skills = () => {
             <motion.div 
                 variants={containerVariants}
                 initial="hidden"
-                animate="visible"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
                 className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
                 {skillCategories.map((category, idx) => (
