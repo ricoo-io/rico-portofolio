@@ -60,26 +60,26 @@ const ProjectCard = ({ project }: { project: Project }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="group h-full flex flex-col bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-colors shadow-lg"
+            className="group flex flex-col md:flex-row bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-colors shadow-lg"
         >
             {/* Image Section */}
-            <div className="relative h-48 md:h-56 overflow-hidden">
+            <div className="relative w-full md:w-5/12 lg:w-1/2 h-64 md:h-auto overflow-hidden flex-shrink-0 bg-black/30 flex items-center justify-center">
                 <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-contain p-4 md:p-8 transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-gray-900 via-gray-900/10 to-transparent opacity-60 pointer-events-none" />
 
-                <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-white/10 backdrop-blur-md border border-white/10 rounded-full">
+                <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 text-xs font-semibold tracking-wide text-white bg-white/10 backdrop-blur-md border border-white/10 rounded-full shadow-md">
                         {project.category}
                     </span>
                 </div>
             </div>
 
             {/* Content Section */}
-            <div className="p-6 flex flex-col flex-grow">
+            <div className="p-6 md:p-8 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
 
                 <p className="text-zinc-400 mb-4">
@@ -166,7 +166,7 @@ const Projects = () => {
                 </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
+            <div className="flex flex-col gap-12 max-w-5xl mx-auto">
                 {projectsData.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                 ))}
