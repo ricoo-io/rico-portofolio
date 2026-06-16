@@ -19,6 +19,9 @@ const jakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Deric's Portofolio",
   description: "Web Portofolio by Deric Navino",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 
