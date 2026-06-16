@@ -15,47 +15,37 @@ interface Project {
     links: {
         demo: string;
         github: string;
+        documentation: string;
     };
 }
 
 const projectsData: Project[] = [
     {
         id: 1,
-        title: "Nexus Finance Dashboard",
-        category: "Web Application",
-        description: "A comprehensive crypto and stock trading visualization platform with real-time data integration.",
-        details: "Nexus Finance is a high-performance dashboard built for traders who need real-time data visualization. It features interactive candlestick charts, live portfolio tracking, and instant market analysis tools. The app uses WebSockets for real-time updates and includes a dark-mode optimized UI for reduced eye strain during long trading sessions.",
-        image: "/project_finance.png",
-        techStack: ["React", "TypeScript", "Tailwind CSS", "Recharts", "Node.js"],
+        title: "SIM-Sekolah",
+        category: "Full-stack Web Development",
+        description: "SIM-Sekolah is an end-to-end educational management platform designed to digitize and automate core academic administrative workflows, from student records to grading systems.",
+        details: "Developed collaboratively in a 2-person team (Oct - Dec 2025), I contributed across the entire full-stack spectrum—from conceptualizing the database architecture to implementing dynamic frontend interfaces. The system utilizes React (TypeScript) for a highly responsive UI, and Express.js with MySQL for reliable data handling. A standout feature is the granular Role-Based Access Control (RBAC) implementation, which intelligently scopes data access and system permissions based on user roles (Teachers vs. Administrators). I also engineered an automated grading module that dynamically calculates student performance metrics, significantly reducing manual administrative overhead.",
+        image: "/project-documentation/sim-sekolah/dashboardAdmin.png",
+        techStack: ["React", "TypeScript", "Express.js", "MySQL"],
         links: {
             demo: "#",
-            github: "#"
+            github: "#",
+            documentation: "/projects/sim-sekolah"
         }
     },
     {
         id: 2,
-        title: "Aurora E-Commerce",
-        category: "Web Application",
-        description: "Modern e-commerce platform with a focus on minimalist design and seamless user experience.",
-        details: "Aurora is a fully functional e-commerce storefront designed with a 'content-first' approach. It features a custom shopping cart implementation, stripe payment integration, and a CMS-backed product management system. The design emphasizes whitespace and high-quality imagery to increase conversion rates.",
-        image: "/project_ecommerce.png",
-        techStack: ["Next.js", "Stripe", "Sanity CMS", "Framer Motion"],
+        title: "VZ.ID",
+        category: "E-Commerce Web",
+        description: "VZ.ID is a premium, high-performance e-commerce storefront crafted to deliver a frictionless online shopping experience, featuring a dynamic product catalog and robust cart system.",
+        details: "Serving as the Backend Developer in a 4-person team (Jun - Jul 2025), my primary focus was architecting a scalable database and writing secure, efficient server-side logic using PHP. I engineered the core transactional features of the platform, including real-time cart state management, product filtering algorithms, and wishlist synchronization. By working closely with the frontend team, we successfully integrated these backend services to a polished HTML/CSS and JavaScript interface. The resulting architecture ensures fast product queries and guarantees data integrity during user checkouts, establishing a solid foundation for digital retail.",
+        image: "/project-documentation/vz-id/home_1.png",
+        techStack: ["HTML", "CSS", "PHP", "JavaScript"],
         links: {
             demo: "#",
-            github: "#"
-        }
-    },
-    {
-        id: 3,
-        title: "Stride Mobile App",
-        category: "Mobile App",
-        description: "Social fitness tracking application allowing users to compete in challenges and track workouts.",
-        details: "Stride brings the social aspect to fitness tracking. Users can join weekly challenges, share running routes, and track their progress with detailed analytics. Built with React Native, it offers a native-like experience on both iOS and Android, including GPS tracking background services and push notifications.",
-        image: "/project_mobile.png",
-        techStack: ["React Native", "Firebase", "Redux", "Google Maps API"],
-        links: {
-            demo: "#",
-            github: "#"
+            github: "#",
+            documentation: "/projects/vz-id"
         }
     }
 ];
@@ -70,7 +60,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             exit={{ opacity: 0, scale: 0.9 }}
-            className="group bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-colors shadow-lg"
+            className="group h-full flex flex-col bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden hover:border-white/20 transition-colors shadow-lg"
         >
             {/* Image Section */}
             <div className="relative h-48 md:h-56 overflow-hidden">
@@ -89,10 +79,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </div>
 
             {/* Content Section */}
-            <div className="p-6">
+            <div className="p-6 flex flex-col flex-grow">
                 <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
 
-                <p className="text-zinc-400 mb-4 line-clamp-2">
+                <p className="text-zinc-400 mb-4">
                     {project.description}
                 </p>
 
@@ -125,23 +115,33 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 </AnimatePresence>
 
                 {/* Actions */}
-                <div className="flex items-center justify-between mt-auto">
-                    <div className="flex gap-4">
-                        <a href={project.links.github} className="text-zinc-400 hover:text-white transition-colors" title="View Code">
-                            <FaGithub size={20} />
-                        </a>
-                        <a href={project.links.demo} className="text-zinc-400 hover:text-white transition-colors" title="Live Demo">
-                            <FaExternalLinkAlt size={18} />
-                        </a>
-                    </div>
+                <div className="flex flex-col gap-4 mt-auto">
+                    <div className="flex items-center justify-between">
+                        <div className="flex gap-4">
+                            <a href={project.links.github} className="text-zinc-400 hover:text-white transition-colors" title="View Code">
+                                <FaGithub size={20} />
+                            </a>
+                            <a href={project.links.demo} className="text-zinc-400 hover:text-white transition-colors" title="Live Demo">
+                                <FaExternalLinkAlt size={18} />
+                            </a>
+                        </div>
 
-                    <button
-                        onClick={() => setIsExpanded(!isExpanded)}
-                        className="flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        >
+                            {isExpanded ? "Show Less" : "Read More"}
+                            {isExpanded ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
+                        </button>
+                    </div>
+                    
+                    {/* Documentation Link */}
+                    <a 
+                        href={project.links.documentation}
+                        className="w-full text-center py-2.5 mt-2 rounded-xl text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all duration-300"
                     >
-                        {isExpanded ? "Show Less" : "Read More"}
-                        {isExpanded ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
-                    </button>
+                        View Full Documentation
+                    </a>
                 </div>
             </div>
         </motion.div>
@@ -166,7 +166,7 @@ const Projects = () => {
                 </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-5xl mx-auto">
                 {projectsData.map((project) => (
                     <ProjectCard key={project.id} project={project} />
                 ))}

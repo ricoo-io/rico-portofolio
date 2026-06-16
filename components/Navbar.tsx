@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
@@ -16,6 +17,8 @@ const navLinks = [
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState("#home");
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,6 +75,13 @@ const Navbar = () => {
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      setIsOpen(false);
+      return;
+    }
+    
     const targetId = href.substring(1);
     const element = document.getElementById(targetId);
     if (element) {
