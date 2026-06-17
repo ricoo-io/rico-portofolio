@@ -2,6 +2,7 @@ import { projectDocs } from "@/lib/projectData";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import { getTechLink } from "@/lib/techLinks";
 
 export function generateStaticParams() {
   return Object.keys(projectDocs).map((slug) => ({
@@ -47,12 +48,15 @@ export default async function ProjectDocumentation({ params }: { params: Promise
             
             <div className="flex flex-wrap gap-3">
               {project.techStack.map((tech) => (
-                <span
+                <a
                   key={tech}
+                  href={getTechLink(tech)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-sm font-semibold text-white bg-white/10 px-4 py-2 rounded-xl border border-white/10 hover:bg-white/20 transition-colors"
                 >
                   {tech}
-                </span>
+                </a>
               ))}
             </div>
           </div>

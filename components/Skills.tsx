@@ -8,6 +8,7 @@ import {
   SiGit, SiGithub, SiFigma
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
+import { getTechLink } from "@/lib/techLinks";
 
 const Skills = () => {
     const skillCategories = [
@@ -103,8 +104,11 @@ const Skills = () => {
                         
                         <div className="flex flex-wrap gap-4">
                             {category.skills.map((skill, sIdx) => (
-                                <div 
+                                <a 
                                     key={sIdx}
+                                    href={getTechLink(skill.name)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="group flex flex-col items-center gap-2 p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 transition-all duration-300 min-w-[80px]"
                                     style={{ "--skill-color": skill.color } as React.CSSProperties}
                                 >
@@ -114,7 +118,7 @@ const Skills = () => {
                                     <span className="text-xs text-zinc-400 group-hover:text-white transition-colors duration-300 font-medium">
                                         {skill.name}
                                     </span>
-                                </div>
+                                </a>
                             ))}
                         </div>
                     </motion.div>

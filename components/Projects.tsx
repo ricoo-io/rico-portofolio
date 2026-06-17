@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { getTechLink } from "@/lib/techLinks";
 
 interface Project {
     id: number;
@@ -47,6 +48,34 @@ const projectsData: Project[] = [
             github: "#",
             documentation: "/projects/vz-id"
         }
+    },
+    {
+        id: 3,
+        title: "Simple Billiard Game",
+        category: "Desktop Application",
+        description: "Simple Billiard Game is a 2D physics-based billiard simulation application designed to deliver realistic gameplay mechanics, ball-to-ball elastic collisions, and clean graphical rendering in a desktop environment.",
+        details: "Developed collaboratively in a 4-person team, I served as the Backend Developer focusing primarily on the game's core physics and logic engine. Written in C++ using the SFML library, my main contributions included implementing accurate collision mechanics, momentum transfer, and bounce physics to ensure a realistic billiard experience. I also engineered the foundational game rules, state management, and integrated sound effects to enhance the overall gameplay feedback loop, demonstrating solid object-oriented design and mathematical application in a gaming context.",
+        image: "/project-documentation/billiard/gameStart.png",
+        techStack: ["C++", "SFML"],
+        links: {
+            demo: "#",
+            github: "#",
+            documentation: "/projects/simple-billiard-game"
+        }
+    },
+    {
+        id: 4,
+        title: "PanDana",
+        category: "Mobile Application",
+        description: "PanDana is a premium personal finance companion mobile application that helps users monitor their balance, record income and expenses, analyze transaction history, and visualize budget distribution.",
+        details: "Developed collaboratively in a 3-person team (Dec 2025), I served a key role in engineering the backend features for the core personal finance management system. This involved architecting robust data models and CRUD operations that enable users to seamlessly log, edit, and delete their daily income and expense data. Furthermore, I developed comprehensive data visualization components—including interactive charts and graphs—to help users effectively monitor and analyze their expense percentages across customizable daily, weekly, monthly, and yearly intervals. The application integrates modern Android technologies like Kotlin and Jetpack Compose to deliver a premium, analytics-driven user experience.",
+        image: "/project-documentation/pandana/profile.png",
+        techStack: ["Kotlin", "Jetpack Compose", "Android Studio", "Room Database (SQLite)", "Material Design 3"],
+        links: {
+            demo: "#",
+            github: "#",
+            documentation: "/projects/pandana"
+        }
     }
 ];
 
@@ -89,12 +118,15 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6">
                     {project.techStack.map((tech) => (
-                        <span
+                        <a
                             key={tech}
-                            className="text-xs text-blue-300 bg-blue-500/10 px-2.5 py-1 rounded-md border border-blue-500/20"
+                            href={getTechLink(tech)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-300 bg-blue-500/10 hover:bg-blue-500/20 px-2.5 py-1 rounded-md border border-blue-500/20 transition-colors"
                         >
                             {tech}
-                        </span>
+                        </a>
                     ))}
                 </div>
 
@@ -134,9 +166,9 @@ const ProjectCard = ({ project }: { project: Project }) => {
                             {isExpanded ? <FaChevronUp size={12} /> : <FaChevronDown size={12} />}
                         </button>
                     </div>
-                    
+
                     {/* Documentation Link */}
-                    <a 
+                    <a
                         href={project.links.documentation}
                         className="w-full text-center py-2.5 mt-2 rounded-xl text-sm font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-white transition-all duration-300"
                     >

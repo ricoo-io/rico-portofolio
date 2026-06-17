@@ -104,5 +104,83 @@ export const projectDocs: Record<string, ProjectDoc> = {
         description: "Complete CMS tools allowing administrators to easily add new products, manage stock levels, organize categories, and configure promotional discounts all from a secure backend interface." 
       }
     ]
+  },
+  "simple-billiard-game": {
+    id: "simple-billiard-game",
+    title: "Simple Billiard Game",
+    category: "Desktop Application",
+    description: "Simple Billiard Game is a 2D physics-based billiard simulation application designed to deliver realistic gameplay mechanics, ball-to-ball elastic collisions, and clean graphical rendering in a desktop environment.",
+    techStack: ["C++", "SFML"],
+    images: [
+      {
+        src: "/project-documentation/billiard/home.png",
+        title: "Main Menu Screen",
+        description: "The initial home screen of the game, presenting a clean layout where users can start a new match or configure options."
+      },
+      {
+        src: "/project-documentation/billiard/gameStart.png",
+        title: "Match Initialization",
+        description: "The setup phase of a game session, rendering the green felt table, pockets, and the initial triangular rack arrangement of billiard balls."
+      },
+      {
+        src: "/project-documentation/billiard/gameStart_2.png",
+        title: "Target Line & Aiming",
+        description: "Interactive preview lines displaying cue ball aiming vectors and force indicators, helping the player make precise shots."
+      },
+      {
+        src: "/project-documentation/billiard/gameplay.png",
+        title: "Active Gameplay Simulation",
+        description: "Real-time execution of physics calculations as the balls scatter across the table. Custom drag and collision logic keep the simulation smooth and responsive."
+      },
+      {
+        src: "/project-documentation/billiard/win.png",
+        title: "Victory Screen",
+        description: "The final success screen displayed when a player wins, highlighting score results and victory achievements."
+      },
+      {
+        src: "/project-documentation/billiard/gameOver.png",
+        title: "Game Over Screen",
+        description: "The end-of-game screen displayed when all attempts are exhausted, prompting the player to restart or return to the main menu."
+      }
+    ]
+  },
+  "pandana": {
+    id: "pandana",
+    title: "PanDana",
+    category: "Mobile Application",
+    description: "PanDana is a premium personal finance companion mobile application that helps users monitor their balance, record income and expenses, analyze transaction history, and visualize budget distribution.",
+    techStack: ["Kotlin", "Jetpack Compose", "Android Studio"],
+    images: [
+      {
+        src: "/project-documentation/pandana/profile.png",
+        title: "Application Overview & Branding",
+        description: "The official PanDana branding featuring a clean logo alongside previews of both the light and dark mode dashboards."
+      },
+      {
+        src: "/project-documentation/pandana/home.png",
+        title: "Interactive Financial Dashboard",
+        description: "A comprehensive overview page displaying total balance, recent statistics, quick expense/income aggregates, and the latest transaction history."
+      },
+      {
+        src: "/project-documentation/pandana/input.png",
+        title: "Add Transaction Flow",
+        description: "A form-driven screen allowing users to easily record new expenses or income with amount inputs, category selection tags, date pickers, and custom notes."
+      },
+      {
+        src: "/project-documentation/pandana/edit.png",
+        title: "Edit Transaction Details",
+        description: "A pre-filled form that lets users update details or delete existing records, instantly recalculating and updating the offline database."
+      },
+      {
+        src: "/project-documentation/pandana/history.png",
+        title: "Complete Transaction History",
+        description: "An advanced list view with full search capabilities and category/time filters to help users review and track their spending history."
+      },
+      {
+        src: "/project-documentation/pandana/laporan.png",
+        title: "Visual Analytics & Reports",
+        description: "A detailed report screen providing monthly financial stats, category-wise progress bars, and a dynamic doughnut chart visualizing expense distributions."
+      }
+    ]
   }
 };
